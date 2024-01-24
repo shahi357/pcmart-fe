@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../admin/assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link href="../admin/assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../admin/assets/libs/css/style.css">
+    <title>PcMart||Admin side</title>
+</head>
+
+
+<body>
+    <!-- main wrapper -->
+    <div class="dashboard-main-wrapper">
+        <div class="dashboard-header">
+            <nav class="navbar navbar-expand-lg bg-white fixed-top">
+                <a class="navbar-brand" href="admindash.html">PcMart</a>
+               
+            </nav>
+        </div>
+        <!-- left sidebar -->
+        <!-- ============================================================== -->
+        <div class="nav-left-sidebar sidebar-dark">
+            <div class="menu-list">
+
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <a class="d-xl-none d-lg-none" href="#">Dashdboard</a>
+
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav flex-column">
+                            <li class="nav-divider">
+                                Menu
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="/admin/admindash.html">Dashboard
+                                    </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="/admin/productlist.html">Products</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="displayuser.html">Current
+                                    Users</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" id="logout" href="#">Logout
+                                    </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- end left sidebar -->
+    <!-- wrapper  -->
+
+    <div class="dashboard-wrapper">
+        <div class="dashboard-ecommerce">
+            <div class="container-fluid dashboard-content ">
+                <!-- pageheader  -->
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="page-header">
+                            <h2 class="pageheader-title">Admin Control </h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- recent orders  -->
+                    <div class="col-xl-12 col-lg-12 col-md-6 col-sm-12 col-12" id="orderDetails">
+                       
+                    </div>
+
+                   
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end wrapper  -->
+    <!-- ============================================================== -->
+    </div>
+    <!-- ends here -->
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.slicknav.min.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="../js/jquery.nicescroll.min.js"></script>
+    <script src="../js/jquery.zoom.min.js"></script>
+    <script src="../js/jquery-ui.min.js"></script>
+    <!-- bootstap bundle js -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script type="module">
+        import { App } from "../js/app.js";
+
+
+
+        $(document).ready(function () {
+            if (!App.checkAdmin()) {
+                location.href = "../index.html"
+            }
+
+            const searchParam = new URLSearchParams(window.location.search);
+
+            let id = searchParam.get('id');
+
+            if(!id)
+            window.location.href = "/admin/admindash.html";
+
+
+            let orders = App.getOrderDetail(id).then(res => {
+                console.log(res);
+                document.getElementById('orderDetails').innerHTML = res;
+            }).catch(err => {
+                console.log(err);
+            })
+
+
+
+
+            $("#logout").on('click', function (e) {
+                e.preventDefault();
+                App.logoutUser();
+            });
+
+        });
+
+    </script>
+
+</body>
+
+</html>

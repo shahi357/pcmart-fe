@@ -1,0 +1,229 @@
+<html>
+
+<head>
+    <title>Pcworld</title>
+    <meta charset="UTF-8">
+    <meta name="description" content=" Pcworld | client side">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,300i,400,400i,700,700i" rel="stylesheet">
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/flaticon.css" />
+    <link rel="stylesheet" href="css/slicknav.min.css" />
+    <link rel="stylesheet" href="css/jquery-ui.min.css" />
+    <link rel="stylesheet" href="css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="css/animate.css" />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+
+<body>
+
+    <!-- Header section -->
+    <header class="header-section">
+        <div class="header-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2 text-center text-lg-left">
+                        <!-- logo -->
+                        <a href="./index.html" class="site-logo">
+                            <h3>PCMART</h3>
+                        </a>
+                    </div>
+                    <div class="col-xl-6 col-lg-5">
+						<form class="header-search-form" action="category.html">
+							<input type="text" name="search" id="searchProduct" placeholder="Search on PCmart....">
+							<button type="submit"><i class="flaticon-search"></i></button>
+						</form>
+					</div>
+                    <div class="col-xl-4 col-lg-5">
+						<div class="user-panel row">
+							<div class="up-item col-4" id="userprofiledisplay">
+								<i class="flaticon-profile"></i>
+								<a href="login.html">Sign</a> In or <a href="register.html">Create Account</a>
+							</div>
+							<div id="logoutDisplay" class="col-4">
+								<a href="#" id="logoutBtn">Logout</a>
+							</div>
+							<div class="up-item col-4">
+								<div class="shopping-card">
+									<i class="flaticon-bag"></i>
+									<span id="cartTotalItems">0</span>
+								</div><a href="cart.html">Shopping Cart</a>
+
+							</div>
+
+						</div>
+					</div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="main-navbar">
+            <div class="container">
+                <!-- menu -->
+                <ul class="main-menu">
+					<li><a href="./index.html">Home</a></li>
+					<li><a href="./category.html?category=laptop">Laptop</a></li>
+					<li><a href="./category.html?category=desktop">Desktop</a></li>
+					<li><a href="./category.html?category=accessories">Accessories
+							<span class="new">New</span>
+						</a></li>
+					<li><a href="./category.html?category=hardware">Hardware</a></li>
+					<li><a href="./category.html?category=software">Software</a></li>
+				</ul>
+            </div>
+        </nav>
+    </header>
+    <!-- Header section end -->
+
+    <!-- Page info -->
+    <div class="page-top-info">
+        <div class="container">
+            <h4>Your cart</h4>
+            <div class="site-pagination">
+                <a href="">Home</a> /
+                <a href="">Your cart</a>
+            </div>
+        </div>
+    </div>
+    <!-- Page info end -->
+
+
+    <!-- cart section end -->
+    <section class="cart-section spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="cart-table">
+                        <h3>Your Cart <a href="" id="emptycart"><img src="img/icons/emptycart.png"
+                                    style="width: 60;height:60px;margin-left: 450px">
+                            </a>
+
+                        </h3>
+
+                        <div class="cart-table-warp">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th class="product-th">Product</th>
+                                        <th class="quy-th">Quantity</th>
+                                        <th class="size-th">Color</th>
+                                        <th class="total-th">Price</th>
+                                        <th class="total-th">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="displayCart">
+
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="total-cost">
+
+                            <h6>Total <span id="productTotal"></span></h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 card-right">
+
+                    <a href="checkout.html" id="checkout" class="site-btn">Proceed to checkout</a>
+                    <a href="index.html" class="site-btn sb-dark">Continue shopping</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- cart section end -->
+
+    <!--====== Javascripts & Jquery ======-->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.slicknav.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.nicescroll.min.js"></script>
+    <script src="js/jquery.zoom.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/main.js"></script>
+    <script type="module">
+        import { App } from "./js/app.js";
+		let loginStatus = App.setup();
+
+		$("#logoutBtn").on("click", function (e) {
+			e.preventDefault();
+			App.logoutUser();
+		})
+
+        $(document).ready(function(){
+           
+            $(document).on("cartUpdated",function(e){
+                setupCartItems();
+			})
+
+            setupCartItems();
+           
+
+            loadCartProducts();
+
+            $(document).on("click",'.deleteCartItem',function(e){
+            
+                let item = null;
+				if(e.target.hasAttribute("data-product")){			
+					 item = e.target.getAttribute("data-product");
+				} else {
+					 item = e.target.parentElement.getAttribute("data-product");
+				}
+
+                App.cart.removeItem(JSON.parse(item),true);
+                
+                loadCartProducts();
+
+            });
+           
+            
+        })
+
+        let setupCartItems = () => {
+            let cart = App.cart;
+            console.log({cart});
+            document.getElementById("cartTotalItems").innerText = App.cart.totalItems;
+            document.getElementById("productTotal").innerText = `$${App.cart.totalCost}`;
+            if(App.cart.totalItems > 0){
+                document.getElementById("checkout").style.display = "block";
+            } else {
+                document.getElementById("checkout").style.display = "none";
+            }
+        }
+
+        let loadCartProducts = () => {
+            let products = App.getCartProducts();
+            let cartHtml = '';
+            products.forEach(product => {
+                cartHtml += `<tr><td class="product-col">
+                                <div><img src="${product.imageUri}"/></div>
+                                <div class="pc-title">
+                                <h6><small>${product.productName}</small></h6></div></td>
+                                <td class="quy-col">
+                                <div class="quantity">
+                                <div class="pro-qty">
+                                <input type="number" name="quantity" disabled data-product='${JSON.stringify(product)}' class="quantityValue" min="1" max="5" value="${product.count}">
+                                <input type="number" hidden name="price" id="pricevalue" value="${product.productPrice}">
+                                </div></td>
+                                <td class="size-col">
+                                <h4 id="productcolor">${product.productColor} </h4>
+                                </td>
+                                <td class="total-col">
+                                <p id="productprice">$${product.productPrice}</p>
+                                </td><td><button data-product='${JSON.stringify(product)}' class="deleteCartItem"><img src="img/icons/cancle.png" style="height:30px;width:30px;border-radius:50%"></button></td></tr>
+                            `;
+            });
+
+            document.getElementById("displayCart").innerHTML = cartHtml;
+        }
+
+    </script>
+
+</body>
+
+</html>

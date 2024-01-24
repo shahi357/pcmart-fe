@@ -1,0 +1,202 @@
+<html>
+
+<head>
+	<title>PcMart</title>
+	<meta charset="UTF-8">
+	<meta name="description" content=" PcMart | index page">
+
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,300i,400,400i,700,700i" rel="stylesheet">
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/font-awesome.min.css" />
+	<link rel="stylesheet" href="css/flaticon.css" />
+	<link rel="stylesheet" href="css/slicknav.min.css" />
+	<link rel="stylesheet" href="css/jquery-ui.min.css" />
+	<link rel="stylesheet" href="css/owl.carousel.min.css" />
+	<link rel="stylesheet" href="css/animate.css" />
+	<link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+	<!-- Header section -->
+	<header class="header-section">
+		<div class="header-top">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-2 text-center text-lg-left">
+						<!-- logo -->
+						<a href="./index.html" class="site-logo">
+							<h3>PCMART</h3>
+						</a>
+					</div>
+					<div class="col-xl-6 col-lg-5">
+						<form class="header-search-form" action="category.html">
+							<input type="text" name="search" id="searchProduct" placeholder="Search on PCmart....">
+							<button type="submit"><i class="flaticon-search"></i></button>
+						</form>
+					</div>
+					<div class="col-xl-4 col-lg-5">
+						<div class="user-panel row">
+							<div class="up-item col-4" id="userprofiledisplay">
+								<i class="flaticon-profile"></i>
+								<a href="login.html">Sign</a> In or <a href="register.html">Create Account</a>
+							</div>
+							<div id="logoutDisplay" class="col-4">
+								<a href="#" id="logoutBtn">Logout</a>
+							</div>
+							<div class="up-item col-4">
+								<div class="shopping-card">
+									<i class="flaticon-bag"></i>
+									<span id="cartTotalItems">0</span>
+								</div><a href="cart.html">Shopping Cart</a>
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<nav class="main-navbar">
+			<div class="container">
+				<!-- menu -->
+				<ul class="main-menu">
+					<li><a href="./index.html">Home</a></li>
+					<li><a href="./category.html?category=laptop">Laptop</a></li>
+					<li><a href="./category.html?category=desktop">Desktop</a></li>
+					<li><a href="./category.html?category=accessories">Accessories
+							<span class="new">New</span>
+						</a></li>
+					<li><a href="./category.html?category=hardware">Hardware</a></li>
+					<li><a href="./category.html?category=software">Software</a></li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+	<!-- Header section end -->
+
+	<!-- Hero section -->
+	<section class="hero-section" id="display">
+		<div class="hero-slider owl-carousel" id="testdisplay">
+			<div class="hs-item set-bg" data-setbg="img/laptop.jpg">
+				<div class="container">
+					<div class="row">
+						<div class="col-xl-6 col-lg-7 text-white">
+							<span>New Arrivals</span>
+							<h2>product</h2>
+							<p>High Quality product.</p>
+							<a href="#" class="site-btn sb-line">DISCOVER</a>
+						</div>
+					</div>
+					<div class="offer-card text-white">
+						<span>from</span>
+						<h2>$39</h2>
+						<p>SHOP NOW</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="slide-num-holder" id="snh-1"></div>
+		</div>
+	</section>
+	<!-- Hero section end -->
+
+	<!-- letest product section -->
+	<section class="top-letest-product-section">
+
+	</section>
+	<!-- letest product section end -->
+
+	<section class="product-filter-section">
+		<div class="container">
+			<div class="section-title">
+				<h2>BROWSE TOP SELLING PRODUCTS</h2>
+			</div>
+			<ul class="product-filter-menu sticky-top">
+				<li><a href="/category.html?brand=dell" id="dell">DELL</a></li>
+				<li><a href="/category.html?brand=hp" id="hp">HP</a></li>
+				<li><a href="/category.html?brand=apple" id="apple">APPLE</a></li>
+				<li><a href="/category.html?brand=lenovo" id="lenovo">Lenovo</a></li>
+				<li><a href="/category.html?brand=acer" id="acer">Acer</a></li>
+				<li><a href="/category.html?brand=misi" id="misi">MISI</a></li>
+				<li><a href="/category.html?brand=asus" id="asus">ASUS</a></li>
+				<li><a href="/category.html?brand=others" id="others">Others</a></li>
+
+			</ul>
+			<hr>
+			<div class="row">
+				<div class="col-lg-12  order-1 order-lg-2 mb-5 mb-lg-0">
+					<div class="row" id="displayproduct">
+
+
+
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</section>
+	<div id="testdisplay"></div>
+	<!-- Product filter section end -->
+
+	<!--====== Javascripts & Jquery ======-->
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.slicknav.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/jquery.nicescroll.min.js"></script>
+	<script src="js/jquery.zoom.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<script src="js/main.js"></script>
+	<script type="module" src="js/app.js"></script>
+	<script type="module">
+		import { App } from "./js/app.js";
+		let loginStatus = App.setup();
+
+		$("#logoutBtn").on("click", function (e) {
+			e.preventDefault();
+			App.logoutUser();
+		})
+
+		$(document).ready(function (e) {
+
+			document.getElementById("cartTotalItems").innerText = App.cart.totalItems;
+
+			let productList = App.getProducts().then(data => {
+				document.getElementById("displayproduct").innerHTML = data;
+			});
+
+			$(document).on("cartUpdated", function (e) {
+				document.getElementById("cartTotalItems").innerText = App.cart.totalItems;
+			})
+
+			$(document).on("click", ".addToCart", function (e) {
+				e.preventDefault();
+				e.stopPropagation();
+				let item = null;
+				if (e.target.hasAttribute("data-product")) {
+
+					item = e.target.getAttribute("data-product");
+				} else {
+
+					item = e.target.parentElement.getAttribute("data-product");
+
+				}
+
+
+
+				App.addToCart(JSON.parse(item), 1);
+			})
+
+		})
+
+
+
+	</script>
+</body>
+
+</html>

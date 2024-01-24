@@ -1,0 +1,437 @@
+<html>
+
+<head>
+    <title>Pcworld</title>
+    <meta charset="UTF-8">
+    <meta name="description" content=" Pcworld | Admin Side">
+
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="../admin/assets/vendor/bootstrap/css/bootstrap.min.css">
+        <link href="../admin/assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
+        <link rel="stylesheet" href="../admin/assets/libs/css/style.css">
+        <title>PcworlD||Admin side</title>
+    </head>
+    <!-- javascript code to connect with server -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="../js/jquery-3.2.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var i = localStorage.getItem('admin');
+            if (i != 0) {
+                alert("not logged in as admin")
+                location.href = "../index.html"
+            }
+            $('#btnyes').click(function () {
+                alert("yes clicked")
+            })
+            var urlParams = new URLSearchParams(window.location.search);
+            console.log(urlParams.get("id"));
+            var id = urlParams.get("id");
+
+            $.getJSON("http://localhost:3000/product/getSpecificProduct/" + id, function (result) {
+                console.log(result);
+                $('#product_catagorie').val(result.productType);
+                $('#product_brand').val(result.productBrand);
+                $("#product_warranty").val(result.productWarranty);
+                $("#product_color").val(result.productColor);
+                $("#product_name").val(result.productName);
+                $("#available_quantity").val(result.productQuantity);
+                $("#product_weight").val(result.productWeight);
+                $("#product_description").val(result.productDescription);
+                $("#product_price").val(result.productPrice);
+                $("#percentage_discount").val(result.productDiscount);
+                // $("#mainImage").val(result.mainImage);
+                // $("#auxImage").val(result.auxiliaryImage);
+
+                $('#mainImageDispay').append(
+                    '<img src="../../t2-backend-api-dillibhai/images/' + result.mainImage + '"' +
+                    'class="rounded" width="80">'
+                );
+
+                $('#auxImageDispay').append(
+                    '<img src="../../t2-backend-api-dillibhai/images/' + result.auxiliaryImage + '"' +
+                    'class="rounded" width="80">'
+                );
+
+
+                let imageFile = result.mainImage;
+                let imageFile2 = result.auxiliaryImage;
+                $("#mainImage").on('change', function () {
+                    let formData = new FormData();
+                    let files = $("#mainImage").get(0).files;
+                    if (files.length > 0) {
+                        formData.append("imageFile", files[0]);
+                    }
+
+                    $.ajax({
+                        type: 'POST',
+                        url: 'http://localhost:3000/newarrivals/uploadNewArrivalsImage',
+                        contentType: false,
+                        cache: false,
+                        processData: false,
+                        data: formData,
+                        success: function (data) {
+                            imageFile = data.filename;
+                        },
+                        error: function () {
+                            alert("Image upload failed!");
+                        }
+                    });
+                });
+
+                $("#auxImage").on('change', function () {
+                    let formData = new FormData();
+                    let files = $("#auxImage").get(0).files;
+
+                    if (files.length > 0) {
+                        formData.append("imageFile2", files[0]);
+                    }
+                    $.ajax({
+                        type: 'POST',
+                        url: 'http://localhost:3000/product/uploadauxImage',
+                        contentType: false,
+                        cache: false,
+                        processData: false,
+                        data: formData,
+                        success: function (data) {
+                            imageFile2 = data.filename;
+                            $('#auxImageDispay').append(
+                                '<img src="../../t2-backend-api-dillibhai/images/' + imageFile2 + '"' +
+                                'class="rounded" width="80">'
+                            );
+                        },
+                        error: function () {
+                            alert("Image upload failed!");
+                        }
+                    });
+                });
+
+                $("#updatebtn").click(function (e) {
+                    e.preventDefault();
+                    alert("update button clicked");
+                    //var formData = new FormData(this);
+                    var product_catagorie = $("#product_catagorie").val();
+                    var product_brand = $("#product_brand").val();
+                    var product_warranty = $("#product_warranty").val();
+                    var product_color = $("#product_color").val();
+                    var product_name = $("#product_name").val();
+                    var available_quantity = $("#available_quantity").val();
+                    var product_weight = $("#product_weight").val();
+                    var product_description = $("#product_description").val();
+                    var product_price = $("#product_price").val();
+                    var percentage_discount = $("#percentage_discount").val();
+                    var data1 = {
+
+                        "productType": product_catagorie,
+                        "productBrand": product_brand,
+                        "productWarranty": product_warranty,
+                        "productColor": product_color,
+                        "productName": product_name,
+                        "productQuantity": available_quantity,
+                        "productWeight": product_weight,
+                        "productDescription": product_description,
+                        "productPrice": product_price,
+                        "productDiscount": percentage_discount,
+                        "mainImage": imageFile,
+                        "auxiliaryImage": imageFile2
+                    };
+                    $.ajax({
+                        type: 'PUT',
+                        url: 'http://localhost:3000/product/updateSpecificProduct/' + id,
+                        data: data1,
+                        success: function (res, textStatus, xhr) {
+                            console.log(data1);
+                            alert("Updated sucessfully..!");
+                            // location.href = "dashboard.html";
+                        },
+                        error: function (xhr, textStatus, errorThrown) {
+                            console.log('Error in Operation');
+
+                        }
+                    });
+                    return false;
+                });
+
+                $('#btnyes').click(function () {
+                    alert("clicked...................")
+                })
+            });
+        });
+
+    </script>
+
+<body>
+    <!-- main wrapper -->
+    <div class="dashboard-main-wrapper">
+        <div class="dashboard-header">
+            <nav class="navbar navbar-expand-lg bg-white fixed-top">
+                <a class="navbar-brand" href="admindash.html">PcWorlD</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+            </nav>
+        </div>
+        <!-- left sidebar -->
+        <!-- ============================================================== -->
+        <div class="nav-left-sidebar sidebar-dark">
+            <div class="menu-list">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <a class="d-xl-none d-lg-none" href="admindash.html">Dashboard</a>
+
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav flex-column">
+                            <li class="nav-divider">
+                                Menu
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false"
+                                    data-target="#submenu-1" aria-controls="submenu-1"><i
+                                        class="fa fa-fw fa-user-circle"></i>Dashboard
+                                    <span class="badge badge-success">6</span></a>
+                                <div id="submenu-1" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false"
+                                                data-target="#submenu-1-2" aria-controls="submenu-1-2">Products</a>
+                                            <div id="submenu-1-2" class="collapse submenu" style="">
+                                                <ul class="nav flex-column">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="addproduct.html">Add New Ones</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="updateproducts.html">Update
+                                                            Exising</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" href="updateproducts.html">Delete
+                                                            Exising</a>
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                        </li>
+
+                                        Users
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false"
+                                    data-target="#submenu-6" aria-controls="submenu-6"><i class="fas fa-fw fa-file"></i>
+                                    User Details </a>
+                                <div id="submenu-6" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="displayuser.html">Current Users</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            Decoration
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false"
+                                    data-target="#submenu-7" aria-controls="submenu-6"><i class="fas fa-fw fa-file"></i>
+                                    Index Decoration </a>
+                                <div id="submenu-7" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">Sliding Images Data Add</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">Sliding Images Data Update/Delete</a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </li>
+
+                </nav>
+            </div>
+        </div>
+
+        <!-- end left sidebar -->
+        <!-- wrapper  -->
+        <div class="dashboard-wrapper">
+            <div class="dashboard-ecommerce">
+                <div class="container-fluid dashboard-content ">
+                    <!-- pageheader  -->
+                    <form>
+                        <fieldset>
+
+                            <!-- Form Name -->
+                            <legend> ADD PRODUCTS</legend>
+
+                            <!-- Select Basic -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="product_categorie">PRODUCT
+                                    CATEGORY</label>
+                                <div class="col-md-4">
+                                    <select id="product_catagorie" name="productType" class="form-control">
+                                        <option value="laptop">Laptop</option>
+
+                                        <option value="desktop">Desktop</option>
+                                        <option value="Hardware">Hardware</option>
+                                        <option value="software">Hardware</option>
+                                        <option value="accessories">Accessories</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="product_brand">Brand</label>
+                                <div class="col-md-4">
+                                    <select id="product_brand" name="productBrand" class="form-control">
+                                        <option value="acer">Acer</option>
+                                        <option value="apple">Apple</option>
+                                        <option value="dell">Dell</option>
+                                        <option value="lenovo">Lenovo</option>
+                                        <option value="misi">MISI</option>
+                                        <option value="asus">Asus</option>
+                                        <option value="hp">HP</option>
+                                        <option value="hp">SAMSUNG</option>
+                                        <option value="hp">MSI</option>
+                                        <option value="others">Un-specified</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="product_warranty">Warrenty Type</label>
+                                <div class="col-md-4">
+                                    <select id="product_warranty" name="productWarranty" class="form-control">
+                                        <option value="no">No warranty</option>
+                                        <option value="local">Local Seller Warranty</option>
+                                        <option value="brand">Brand Warranty</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="product_color">Color</label>
+                                <div class="col-md-4">
+                                    <select id="product_color" name="productColor" class="form-control">
+                                        <option value="black">Black</option>
+                                        <option value="white">White</option>
+                                        <option value="silver">Silver</option>
+                                        <option value="blue">Bule</option>
+                                        <option value="multicolor">Multi color</option>
+                                        <option value="grey">Grey</option>
+                                        <option value="red">Red</option>
+                                        <option value="gold">Gold</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="product_name">PRODUCT NAME</label>
+                                <div class="col-md-4">
+                                    <input id="product_name" name="productName" placeholder="PRODUCT NAME"
+                                        class="form-control input-md" required="" type="text">
+
+                                </div>
+                            </div>
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="available_quantity">AVAILABLE
+                                    QUANTITY</label>
+                                <div class="col-md-4">
+                                    <input id="available_quantity" name="productQuantity"
+                                        placeholder="AVAILABLE QUANTITY" class="form-control input-md" required=""
+                                        type="number">
+
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="product_weight">PRODUCT WEIGHT</label>
+                                <div class="col-md-4">
+                                    <input id="product_weight" name="productWeight" placeholder="PRODUCT WEIGHT"
+                                        class="form-control input-md" required="" type="text">
+
+                                </div>
+                            </div>
+
+                            <!-- Textarea -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="product_description">PRODUCT
+                                    DESCRIPTION</label>
+                                <div class="col-md-4">
+                                    <textarea class="form-control" id="product_description"
+                                        name="productDescription"></textarea>
+                                </div>
+                            </div>
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="product_price">PRODUCT PRICE</label>
+                                <div class="col-md-4">
+                                    <input id="product_price" name="productPrice" placeholder="Product Price"
+                                        class="form-control input-md" required="" type="number">
+
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="percentage_discount">PERCENTAGE
+                                    DISCOUNT</label>
+                                <div class="col-md-4">
+                                    <input id="percentage_discount" name="productDiscount"
+                                        placeholder="PERCENTAGE DISCOUNT" class="form-control input-md" type="text">
+
+                                </div>
+                            </div>
+
+                            <!-- File Button -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="mainImage">Main Image</label>
+                                <div class="col-md-4">
+                                    <input id="mainImage" name="mainImage" class="input-file" type="file">
+                                    <div id="mainImageDispay"></div>
+                                </div>
+                            </div>
+
+                            <!-- File Button -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="auxImage">Auxiliary Images</label>
+                                <div class="col-md-4">
+                                    <input id="auxImage" name="auxiliaryImage" class="input-file" type="file">
+                                </div>
+                                <div id="auxImageDispay">
+
+                                </div>
+                            </div>
+
+                            <!-- Button -->
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                    <button id="updatebtn" class="btn btn-primary"> UPDATE PRODUCT </button>
+                                </div>
+                            </div>
+
+                        </fieldset>
+                    </form>
+                    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+                    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</body>
+<script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+<!-- bootstap bundle js -->
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+<!-- main js -->
+<script src="assets/libs/js/main-js.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+
+</html>

@@ -1,0 +1,277 @@
+<html>
+
+<head>
+	<title>Pcworld</title>
+	<meta charset="UTF-8">
+	<meta name="description" content=" Pcworld | client side">
+
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,300i,400,400i,700,700i" rel="stylesheet">
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/font-awesome.min.css" />
+	<link rel="stylesheet" href="css/flaticon.css" />
+	<link rel="stylesheet" href="css/slicknav.min.css" />
+	<link rel="stylesheet" href="css/jquery-ui.min.css" />
+	<link rel="stylesheet" href="css/owl.carousel.min.css" />
+	<link rel="stylesheet" href="css/animate.css" />
+	<link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+	<!-- Header section -->
+	<header class="header-section">
+		<div class="header-top">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-2 text-center text-lg-left">
+						<!-- logo -->
+						<a href="./index.html" class="site-logo">
+							<h3>PCMART</h3>
+						</a>
+					</div>
+					<div class="col-xl-6 col-lg-5">
+						<form class="header-search-form">
+							<input type="text" placeholder="Search on PcworlD....">
+							<button><i class="flaticon-search"></i></button>
+						</form>
+					</div>
+					<div class="col-xl-4 col-lg-5">
+						<div class="user-panel row">
+							<div class="up-item col-4" id="userprofiledisplay">
+								<i class="flaticon-profile"></i>
+								<a href="login.html">Sign</a> In or <a href="register.html">Create Account</a>
+							</div>
+							<div id="logoutDisplay" class="col-4">
+								<a href="#" id="logoutBtn">Logout</a>
+							</div>
+							<div class="up-item col-4">
+								<div class="shopping-card">
+									<i class="flaticon-bag"></i>
+									<span id="cartTotalItems">0</span>
+								</div><a href="cart.html">Shopping Cart</a>
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<nav class="main-navbar">
+			<div class="container">
+				<!-- menu -->
+				<ul class="main-menu">
+					<li><a href="./index.html">Home</a></li>
+					<li><a href="./category.html?category=laptop">Laptop</a></li>
+					<li><a href="./category.html?category=desktop">Desktop</a></li>
+					<li><a href="./category.html?category=accessories">Accessories
+							<span class="new">New</span>
+						</a></li>
+					<li><a href="./category.html?category=hardware">Hardware</a></li>
+					<li><a href="./category.html?category=software">Software</a></li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+	<!-- Header section end -->
+
+	<!-- Page info -->
+	<div class="page-top-info">
+		<div class="container">
+			<h4>Your cart</h4>
+			<div class="site-pagination">
+				<a href="index.html">Home</a> /
+				<a href="cart.html">Your cart</a>/
+				<a href="checkout.html">Check out</a>
+			</div>
+		</div>
+	</div>
+	<!-- Page info end -->
+
+
+	<!-- checkout section  -->
+	<section class="checkout-section spad">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 order-2 order-lg-1">
+					<h3 class="text-success alert text-center" id="orderMesssage"></h3>
+					<form class="checkout-form" id="useraddressform">
+						<div class="cf-title">Order Details</div>
+
+						<div class="row address-inputs">
+							<div class="col-md-12">
+								<span class="text-warning">Full Name</span>
+								<input type="text" name="userName" required placeholder="John Doe" id="fullName">
+
+								<span class="text-warning">Email Address</span>
+								<input type="text" name="userEmail" required placeholder="johndoe@mail.com" id="email">
+								<span class="text-warning">User Address Line 1</span>
+								<input type="text" placeholder="Address Line 1" required id="address1"
+									name="userAddress1">
+								<span class="text-warning">User Address Line 2</span>
+								<input type="text" placeholder="Address line 2" id="address2" name="userAddress2">
+								<span class="text-warning">City</span>
+								<input type="text" placeholder="City" required id="city" name="city">
+							</div>
+							<div class="col-md-6">
+								<span class="text-warning">Postal code</span>
+								<input type="text" placeholder="Postal Code" required id="postal" name="postal">
+							</div>
+							<div class="col-md-6">
+								<span class="text-warning">Phone Number</span>
+								<input type="text" placeholder="Phone no." required id="phone" name="userPhone">
+							</div>
+						</div>
+
+
+
+						<button class="site-btn submit-order-btn" type="submit" id="placeOrder">Place Order</button>
+					</form>
+				</div>
+				<div class="col-lg-4 order-1 order-lg-2">
+					<div class="checkout-cart">
+						<h3>Your Cart</h3>
+						<div id="cartproducts">
+
+
+
+						</div>
+						<ul class="price-list">
+							<li>Total Rs. <span id="productprice1"></span></li>
+							<li>Shipping<span>free</span></li>
+							<li class="total">Total Rs. <span id="productprice2"></span></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- checkout section end -->
+
+	<!-- Footer section -->
+	<section class="footer-section">
+		<div class="container">
+			<div class="footer-logo text-center">
+				<a href="index.html">
+					<h1>PcworlD</h1>
+				</a>
+			</div>
+
+			<div class="social-links-warp">
+				<div class="container">
+					<div class="social-links">
+						<a href="" class="instagram"><i class="fa fa-instagram"></i><span>instagram</span></a>
+						<a href="" class="google-plus"><i class="fa fa-google-plus"></i><span>g+plus</span></a>
+						<a href="" class="pinterest"><i class="fa fa-pinterest"></i><span>pinterest</span></a>
+						<a href="" class="facebook"><i class="fa fa-facebook"></i><span>facebook</span></a>
+						<a href="" class="twitter"><i class="fa fa-twitter"></i><span>twitter</span></a>
+						<a href="" class="youtube"><i class="fa fa-youtube"></i><span>youtube</span></a>
+
+					</div>
+
+					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+					<p class="text-white text-center mt-5">Copyright &copy;
+						<script>document.write(new Date().getFullYear());</script> All rights reserved | This template
+						is
+						made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com"
+							target="_blank">Colorlib</a>
+					</p>
+					<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+
+				</div>
+			</div>
+	</section>
+	<!-- Footer section end -->
+
+
+
+	<!--====== Javascripts & Jquery ======-->
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.slicknav.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/jquery.nicescroll.min.js"></script>
+	<script src="js/jquery.zoom.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<script src="js/main.js"></script>
+	<script type="module">
+		import { App } from "./js/app.js";
+
+		let loginStatus = App.setup();
+
+		$("#logoutBtn").on("click", function (e) {
+			e.preventDefault();
+			App.logoutUser();
+		})
+
+		let setupCartItems = () => {
+			document.getElementById("cartTotalItems").innerText = App.cart.totalItems;
+			document.getElementById("productprice1").innerText = `$${App.cart.totalCost}`;
+			document.getElementById("productprice2").innerText = `$${App.cart.totalCost}`;
+			if (App.cart.totalItems < 1) {
+				window.location.href = "/cart.html";
+			}
+		}
+
+		$(document).ready(function () {
+
+			setupCartItems();
+
+			$(document).on("cartUpdated", function (e) {
+				document.getElementById("cartTotalItems").innerText = App.cart.totalItems;
+				document.getElementById("productTotal").innerText = `$${App.cart.totalCost}`;
+				setupCartItems();
+			})
+
+			$("#placeOrder").on("click", function (e) {
+				e.preventDefault();
+				let form = $("#useraddressform").serializeArray();
+				let orderPayload = {};
+				form.forEach(item => {
+					orderPayload[`${item.name}`] = item.value;
+				})
+				orderPayload['items'] = [];
+				let cartItems = App.getCartProducts();
+
+				cartItems.forEach(item => {
+					orderPayload['items'].push({
+						'productId': item._id,
+						'quantity': item.count
+					})
+				})
+
+				let orderResponse = App.sendOrder(orderPayload)
+					.then(res => {
+						if (res.status == 422) {
+							for (const [key, value] of Object.entries(res.errors)) {
+								console.log(`${key}: ${value}`)
+								let elem = (document.querySelector('input[name="' + key + '"]'));
+								if (elem)
+									elem.style.backgroundColor = "#fcc2c2";
+							}
+							return;
+						}
+						document.getElementById("orderMesssage").innerText=res.message;
+						document.getElementById("orderMesssage").scrollIntoView();
+						document.getElementById("useraddressform").reset();
+						App.cart.resetCart();
+						setTimeout(()=>{
+							window.location.href = "/"
+						},3000)
+
+					}).catch(err => {
+						console.log(err);
+					})
+
+			});
+
+		})
+
+	</script>
+
+</body>
+
+</html>

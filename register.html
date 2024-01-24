@@ -1,0 +1,197 @@
+<html>
+
+<head>
+    <title>PcMart</title>
+    <meta charset="UTF-8">
+    <meta name="description" content=" PcMart | client side">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,300i,400,400i,700,700i" rel="stylesheet">
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/flaticon.css" />
+    <link rel="stylesheet" href="css/slicknav.min.css" />
+    <link rel="stylesheet" href="css/jquery-ui.min.css" />
+    <link rel="stylesheet" href="css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="css/animate.css" />
+    <link rel="stylesheet" href="css/style.css" />
+
+
+</head>
+
+<body>
+
+    <!-- Header section -->
+    <header class="header-section">
+        <div class="header-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2 text-center text-lg-left">
+                        <!-- logo -->
+                        <a href="./index.html" class="site-logo">
+                            <h3>PCMART</h3>
+                        </a>
+                    </div>
+                    <div class="col-xl-6 col-lg-5">
+						<form class="header-search-form" action="category.html">
+							<input type="text" name="search" id="searchProduct" placeholder="Search on PCmart....">
+							<button type="submit"><i class="flaticon-search"></i></button>
+						</form>
+					</div>
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="user-panel row">
+                            <div class="up-item col-4" id="userprofiledisplay">
+                                <i class="flaticon-profile"></i>
+                                <a href="login.html">Sign</a> In or <a href="register.html">Create Account</a>
+                            </div>
+                            <div id="logoutDisplay" class="col-4">
+                                <a href="#" id="logoutBtn">Logout</a>
+                            </div>
+                            <div class="up-item col-4">
+                                <div class="shopping-card">
+                                    <i class="flaticon-bag"></i>
+                                    <span>0</span>
+                                </div><a href="cart.html">Shopping Cart</a>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="main-navbar">
+            <div class="container">
+                <!-- menu -->
+                <ul class="main-menu">
+					<li><a href="./index.html">Home</a></li>
+					<li><a href="./category.html?category=laptop">Laptop</a></li>
+					<li><a href="./category.html?category=desktop">Desktop</a></li>
+					<li><a href="./category.html?category=accessories">Accessories
+							<span class="new">New</span>
+						</a></li>
+					<li><a href="./category.html?category=hardware">Hardware</a></li>
+					<li><a href="./category.html?category=software">Software</a></li>
+				</ul>
+            </div>
+        </nav>
+    </header>
+    <!-- Header section end -->
+
+    <!-- 
+        login section starts -->
+    <div class="container-fluid">
+        <section>
+            <div class="login-div">
+                <form method="POST" id="signupForm" enctype="multipart/form-data">
+                    <h3 class="text-center text-danger" id="errorMessage"></h3>
+                    <h3 class="text-center text-success" id="successMessage"></h3>
+                    <h2 class="form-title">Create account</h2>
+                    <div class="form-group">
+                        <input type="text" class="form-input" name="userName" id="user_Name" placeholder="Your Name" />
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-input" name="userEmail" id="user_Email"
+                            placeholder="Your Email" />
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-input" name="userPassword" id="user_Password"
+                            placeholder="Password" />
+                        <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-input" name="re_password" id="re_password"
+                            placeholder="Repeat your password" />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-input" name="city" id="city" placeholder="Enter your City" />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-input" name="postal" id="postal" placeholder="Postal code" />
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-input" minlength="10" maxlength="10" name="userPhone" id="phone"
+                            placeholder="Phone Number" />
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-input" name="userAddress1" id="address1"
+                            placeholder="Address Line 1" />
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" class="form-input" name="userAddress2" id="address2"
+                            placeholder="Address Line 2" />
+                    </div>
+
+             
+
+                    <div class="form-group">
+                        <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+                        <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all
+                            statements in <a href="#" class="term-service">Terms of service</a></label>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" name="submit" id="userSignup" class="form-submit">SIGN UP</button>
+                    </div>
+                </form>
+
+                <p class="loginhere">
+                    Have already an account ? <a href="./login.html" class="loginhere-link" onclick="clickme">Login
+                        here</a>
+            </div>
+    </div>
+    </section>
+
+    <!--====== Javascripts & Jquery ======-->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.slicknav.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.nicescroll.min.js"></script>
+    <script src="js/jquery.zoom.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/main.js"></script>
+    <script type="module">
+        import { App } from "./js/app.js";
+        let loginStatus = App.checkUser();
+        if (loginStatus) {
+            window.location.href = "/";
+        }
+        $(document).ready(function () {
+            $("#userSignup").on("click", function (e) {
+                e.preventDefault();
+                let form = $("#signupForm").serializeArray();
+                let registerPayload = {};
+                form.forEach(item => {
+                    registerPayload[`${item.name}`] = item.value;
+                })
+
+                let registerResponse = App.registerUser(registerPayload)
+                .then(res => {
+                    if (res.status == 422) {
+                        for (const [key, value] of Object.entries(res.errors)) {
+                            
+                            let elem = (document.querySelector('input[name="' + key + '"]'));
+                            if (elem)
+                                elem.style.backgroundColor = "#fcc2c2";
+                        }
+                        return;
+                    }
+
+                    setTimeout(()=>{
+                        window.location.href = "/login.html";
+                    },3000)
+
+                }).catch(err => {
+                    console.log(err);
+                })
+            })
+        });  
+    </script>
+
+</body>
+
+</html>

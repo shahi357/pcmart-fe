@@ -1,0 +1,160 @@
+<html>
+
+<head>
+	<title>PcMart</title>
+	<meta charset="UTF-8">
+	<meta name="description" content=" PcMart | client side">
+
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,300i,400,400i,700,700i" rel="stylesheet">
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" href="css/font-awesome.min.css" />
+	<link rel="stylesheet" href="css/flaticon.css" />
+	<link rel="stylesheet" href="css/slicknav.min.css" />
+	<link rel="stylesheet" href="css/jquery-ui.min.css" />
+	<link rel="stylesheet" href="css/owl.carousel.min.css" />
+	<link rel="stylesheet" href="css/animate.css" />
+	<link rel="stylesheet" href="css/style.css" />
+</head>
+
+
+<body>
+
+	<!-- Header section -->
+	<header class="header-section">
+		<div class="header-top">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-2 text-center text-lg-left">
+						<!-- logo -->
+						<a href="./index.html" class="site-logo">
+							<h3>PCMART</h3>
+						</a>
+					</div>
+					<div class="col-xl-6 col-lg-5">
+						<form class="header-search-form" action="category.html">
+							<input type="text" name="search" id="searchProduct" placeholder="Search on PCmart....">
+							<button type="submit"><i class="flaticon-search"></i></button>
+						</form>
+					</div>
+					<div class="col-xl-4 col-lg-5">
+						<div class="user-panel row">
+							<div class="up-item col-4" id="userprofiledisplay">
+								<i class="flaticon-profile"></i>
+								<a href="login.html">Sign</a> In or <a href="register.html">Create Account</a>
+							</div>
+							<div id="logoutDisplay" class="col-4">
+								<a href="#" id="logoutBtn">Logout</a>
+							</div>
+							<div class="up-item col-4">
+								<div class="shopping-card">
+									<i class="flaticon-bag"></i>
+									<span id="cartTotalItems">0</span>
+								</div><a href="cart.html">Shopping Cart</a>
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<nav class="main-navbar">
+			<div class="container">
+				<!-- menu -->
+				<ul class="main-menu">
+					<li><a href="./index.html">Home</a></li>
+					<li><a href="./category.html?category=laptop">Laptop</a></li>
+					<li><a href="./category.html?category=desktop">Desktop</a></li>
+					<li><a href="./category.html?category=accessories">Accessories
+							<span class="new">New</span>
+						</a></li>
+					<li><a href="./category.html?category=hardware">Hardware</a></li>
+					<li><a href="./category.html?category=software">Software</a></li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+	<!-- Header section end -->
+
+
+	<!-- Page info -->
+	<div class="page-top-info">
+		<div class="container">
+			<h4>Category PAge</h4>
+			<div class="site-pagination">
+				<a href="index.html">Home</a> 
+				
+			</div>
+		</div>
+	</div>
+	<!-- Page info end -->
+
+
+	<!-- product section -->
+	<section class="product-section">
+		<div class="container">
+			<div class="back-link">
+				<a href="./category.html"> &lt;&lt; Back to Category</a>
+			</div>
+			<div class="row" id="productDetails">
+			
+			</div>
+		</div>
+	</section>
+	<!-- product section end -->
+
+
+
+	<!--====== Javascripts & Jquery ======-->
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.slicknav.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/jquery.nicescroll.min.js"></script>
+	<script src="js/jquery.zoom.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<script src="js/main.js"></script>
+	<script type="module">
+		import { App } from "./js/app.js";
+		let loginStatus = App.setup();
+
+		$("#logoutBtn").on("click", function (e) {
+			e.preventDefault();
+			App.logoutUser();
+		})
+		$(document).ready(function () {
+			var urlParams = new URLSearchParams(window.location.search);
+			var pid = urlParams.get("id");
+
+			let product = App.getProduct(pid).then(data=>{
+				document.getElementById("productDetails").innerHTML = data;
+			})
+
+			document.getElementById("cartTotalItems").innerText = App.cart.totalItems;
+
+			$(document).on("cartUpdated", function (e) {
+				document.getElementById("cartTotalItems").innerText = App.cart.totalItems;
+			})
+
+
+			$(document).on("click",".addToCart",function(e){
+				e.preventDefault();
+				let product = e.target.getAttribute('data-product');
+				console.log(product);
+				let qty = $("#pro_quantity").val();
+				App.addToCart(JSON.parse(product),parseInt(qty));
+			});
+		
+			
+			
+		});
+
+	</script>
+
+
+</body>
+
+</html>

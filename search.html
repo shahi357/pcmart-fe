@@ -1,0 +1,123 @@
+<html>
+
+<head>
+    <title>PcMart</title>
+    <meta charset="UTF-8">
+    <meta name="description" content=" PcMart | index page">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,300i,400,400i,700,700i" rel="stylesheet">
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/flaticon.css" />
+    <link rel="stylesheet" href="css/slicknav.min.css" />
+    <link rel="stylesheet" href="css/jquery-ui.min.css" />
+    <link rel="stylesheet" href="css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="css/animate.css" />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#searchProduct').keyup(function (e) {
+            e.preventDefault();
+            var searcQuery = $(this).val();
+
+        })
+    })
+
+</script>
+
+<body>
+
+    <!-- Header section -->
+    <header class="header-section">
+        <div class="header-top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2 text-center text-lg-left">
+                        <!-- logo -->
+                        <a href="./index.html" class="site-logo">
+                            <h3>PCMART</h3>
+                        </a>
+                    </div>
+                    <div class="col-xl-6 col-lg-5">
+                        <form class="header-search-form">
+                            <input type="text" id="searchProduct" placeholder="Search on PcworlD....">
+                            <button><i class="flaticon-search"></i></button>
+                        </form>
+                    </div>
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="user-panel">
+                            <div class="up-item" id="userprofiledisplay">
+                                <i class="flaticon-profile"></i>
+                                <a href="login.html">Sign</a> In or <a href="register.html">Create Account</a>
+                            </div>
+                            <div class="up-item">
+                                <div class="shopping-card">
+                                    <i class="flaticon-bag"></i>
+                                    <span>0</span>
+                                </div><a href="cart.html">Shopping Cart</a>
+
+
+                            </div>
+                            <a href="" id="logout">Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="main-navbar">
+            <div class="container">
+                <!-- menu -->
+                <ul class="main-menu">
+                    <li><a href="./index.html">Home</a></li>
+                    <li><a href="./category.html?ptid=laptop">Laptop</a></li>
+                    <li><a href="./category.html?ptid=desktop">Desktop</a></li>
+                    <li><a href="./category.html?ptid=accessories">Accessories
+                            <span class="new">New</span>
+                        </a></li>
+                    <li><a href="./category.html?ptid=hardware">Hardware</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- Header section end -->
+
+    <!-- Page info -->
+    <div class="page-top-info">
+        <div class="container">
+            <h4>Your cart</h4>
+            <div class="site-pagination">
+                <a href="index.html">Home</a> /
+                <a href="cart.html">Your cart</a>/
+                <a href="checkout.html">Check out</a>
+            </div>
+        </div>
+    </div>
+    <!-- Page info end -->
+
+
+    <!-- checkout section  -->
+    <section class="checkout-section spad">
+        <div class="container">
+
+
+            <p>Product not found....</p>
+        </div>
+    </section>
+    <!--====== Javascripts & Jquery ======-->
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.slicknav.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.nicescroll.min.js"></script>
+    <script src="js/jquery.zoom.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

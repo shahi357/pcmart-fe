@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../admin/assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link href="../admin/assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../admin/assets/libs/css/style.css">
+    <title>PCMART||Admin side</title>
+</head>
+
+
+<body>
+    <!-- main wrapper -->
+    <div class="dashboard-main-wrapper">
+        <div class="dashboard-header">
+            <nav class="navbar navbar-expand-lg bg-white fixed-top">
+                <a class="navbar-brand" href="admindash.html">PCMART</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+            </nav>
+        </div>
+        <!-- left sidebar -->
+        <!-- ============================================================== -->
+        <div class="nav-left-sidebar sidebar-dark">
+            <div class="menu-list">
+
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <a class="d-xl-none d-lg-none" href="#">Dashdboard</a>
+
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav flex-column">
+                            <li class="nav-divider">
+                                Menu
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="/admin/admindash.html">Dashboard
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="/admin/productlist.html">Products</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="displayuser.html">Current
+                                    Users</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="logout" href="#">Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- end left sidebar -->
+    <!-- wrapper  -->
+
+    <div class="dashboard-wrapper">
+        <div class="dashboard-ecommerce">
+            <div class="container-fluid dashboard-content ">
+                <!-- pageheader  -->
+
+                <div class="container-fluid">
+
+                    <!-- product value display -->
+
+                    <h3 class="text-center text-success" id="message"></h3>
+
+                    <!-- product display  -->
+                    <form method="POST" enctype="multipart/form-data" id="productForm">
+                        <fieldset>
+
+                            <!-- Form Name -->
+                            <legend> UPDATE PRODUCTS</legend>
+
+                            <!-- Select Basic -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="product_categorie">PRODUCT CATEGORY</label>
+                                <div class="col-md-4">
+                                    <select id="product_catagorie" name="productType" class="form-control">
+                                        <option value="laptop">Laptop</option>
+
+                                        <option value="desktop">Desktop</option>
+                                        <option value="hardware">Hardware</option>
+                                        <option value="software">Software</option>
+                                        <option value="accessories">Accessories</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="product_brand">Brand</label>
+                                <div class="col-md-4">
+                                    <select id="product_brand" name="productBrand" class="form-control">
+                                        <option value="acer">Acer</option>
+                                        <option value="apple">Apple</option>
+                                        <option value="dell">Dell</option>
+                                        <option value="lenovo">Lenovo</option>
+                                        <option value="misi">MISI</option>
+                                        <option value="asus">Asus</option>
+                                        <option value="hp">HP</option>
+                                        <option value="hp">SAMSUNG</option>
+                                        <option value="hp">MSI</option>
+                                        <option value="others">Un-specified</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="product_warranty">Warrenty Type</label>
+                                <div class="col-md-4">
+                                    <select id="product_warranty" name="productWarranty" class="form-control">
+                                        <option value="no">No warranty</option>
+                                        <option value="local">Local Seller Warranty</option>
+                                        <option value="brand">Brand Warranty</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="product_color">Color</label>
+                                <div class="col-md-4">
+                                    <select id="product_color" name="productColor" class="form-control">
+                                        <option value="black">Black</option>
+                                        <option value="white">White</option>
+                                        <option value="silver">Silver</option>
+                                        <option value="blue">Bule</option>
+                                        <option value="multicolor">Multi color</option>
+                                        <option value="grey">Grey</option>
+                                        <option value="red">Red</option>
+                                        <option value="gold">Gold</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="product_name">PRODUCT NAME</label>
+                                <div class="col-md-4">
+                                    <input id="product_name" name="productName" placeholder="PRODUCT NAME"
+                                        class="form-control input-md" required="" type="text">
+
+                                </div>
+                            </div>
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="available_quantity">AVAILABLE
+                                    QUANTITY</label>
+                                <div class="col-md-4">
+                                    <input id="available_quantity" name="productQuantity"
+                                        placeholder="AVAILABLE QUANTITY" class="form-control input-md" required=""
+                                        type="number">
+
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="product_weight">PRODUCT WEIGHT</label>
+                                <div class="col-md-4">
+                                    <input id="product_weight" name="productWeight" placeholder="PRODUCT WEIGHT"
+                                        class="form-control input-md" required="" type="text">
+
+                                </div>
+                            </div>
+
+                            <!-- Textarea -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="product_description">PRODUCT
+                                    DESCRIPTION</label>
+                                <div class="col-md-4">
+                                    <textarea class="form-control" id="product_description"
+                                        name="productDescription"></textarea>
+                                </div>
+                            </div>
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="product_price">PRODUCT PRICE</label>
+                                <div class="col-md-4">
+                                    <input id="product_price" name="productPrice" placeholder="Product Price"
+                                        class="form-control input-md" required="" type="number">
+
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="percentage_discount">PERCENTAGE
+                                    DISCOUNT</label>
+                                <div class="col-md-4">
+                                    <input id="percentage_discount" name="productDiscount"
+                                        placeholder="PERCENTAGE DISCOUNT" class="form-control input-md" type="text">
+
+                                </div>
+                            </div>
+
+                            <!-- File Button -->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="auxImage"> Images</label>
+                                <div class="col-md-4">
+                                    <input id="auxImage" name="auxiliaryImage" class="input-file" type="file">
+                                    <br>
+                                    <span>If a new image is not uploaded, the existing image will be retained unchanged.</span>
+                                </div>
+                            </div>
+
+                            <!-- Button -->
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                    <button type="submit" id="addproductButton" class="btn btn-primary"> Update PRODUCT
+                                    </button>
+                                </div>
+
+                        </fieldset>
+                    </form>
+
+                </div>
+            </div>
+</body>
+<script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+<!-- bootstap bundle js -->
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+<!-- main js -->
+<script src="assets/libs/js/main-js.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+<script type="module">
+    import { App } from "../js/app.js";
+    $(document).ready(function () {
+        if (!App.checkAdmin()) {
+            location.href = "../index.html"
+        }
+
+        const urlParam = new URLSearchParams(window.location.search);
+
+        let productId = urlParam.get('id');
+        if (!productId)
+            window.location.href = "/admin/productlist.html"
+
+        let product = App.getProduct(productId, false).then(res => {
+
+            for (const [key, value] of Object.entries(res.data)) {
+                let elem = document.querySelector('[name="' + key + '"]');
+                if (elem)
+                    elem.value = value;
+            }
+        }).catch(err => {
+            console.log(err);
+        })
+
+        $("#addproductButton").on("click", function (e) {
+            e.preventDefault();
+            document.querySelectorAll('input').forEach(element => {
+                element.style.backgroundColor = "white";
+            })
+
+
+            let form = $("#productForm").serializeArray();
+            let productPayload = new FormData();
+            form.forEach(item => {
+                productPayload.append(`${item.name}`, item.value);
+            })
+            let fileInput = $("#auxImage")[0];
+            if (fileInput.files.length) {
+                let file = fileInput.files[0];
+                console.log(file, "image file");
+                productPayload.append("image", file);
+            }
+
+            App.updateProduct(productPayload, productId).then(res => {
+                document.getElementById("message").innerText = res.message;
+                document.getElementById("message").scrollIntoView();
+                if (res.status == 200) {
+                    document.getElementById("productForm").reset();
+                    window.location.href = "/admin/productlist.html";
+                }
+                if (res.status == 422) {
+                    for (const [key, value] of Object.entries(res.errors)) {
+
+                        let elem = (document.querySelector('input[name="' + key + '"]'));
+                        if (elem)
+                            elem.style.backgroundColor = "#fcc2c2";
+                    }
+
+                }
+            }).catch(err => {
+                console.log(err);
+            })
+        })
+
+
+        $("#logout").on('click', function (e) {
+            e.preventDefault();
+            App.logoutUser();
+        });
+
+    });
+
+
+</script>
+
+</html>

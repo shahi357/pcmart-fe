@@ -1,0 +1,232 @@
+<html>
+
+<head>
+	<title>Pcworld</title>
+	<meta charset="UTF-8">
+	<meta name="description" content=" Pcworld | index page">
+
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,300i,400,400i,700,700i" rel="stylesheet">
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="../css/bootstrap.min.css" />
+	<link rel="stylesheet" href="../css/font-awesome.min.css" />
+	<link rel="stylesheet" href="../css/flaticon.css" />
+	<link rel="stylesheet" href="../css/slicknav.min.css" />
+	<link rel="stylesheet" href="../css/jquery-ui.min.css" />
+	<link rel="stylesheet" href="../css/owl.carousel.min.css" />
+	<link rel="stylesheet" href="../css/animate.css" />
+	<link rel="stylesheet" href="../css/style.css" />
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="../js/jquery-3.2.1.min.js"></script>
+<script>
+	$(document).ready(function () {
+		var tok = localStorage.getItem('token');
+		var id = localStorage.getItem('uid');
+		$.ajax({
+			type: "GET",
+			url: "http://localhost:3000/user/getSpecificUser",
+			beforeSend: function (xhr) {
+				if (tok) {
+					xhr.setRequestHeader('Authorization', 'Bearer ' + tok);
+				}
+			},
+			success: function (data) {
+				console.log(data);
+				$('#userprofiledisplay').append(
+					'<img src="../../t2-backend-api-aryalaashish121/images/' + data.userImage + '" class="rounded" width="45"></div>'
+				)
+				$.getJSON('http://localhost:3000/newarrivals/displayNewArrivals', function (res) {
+					$.each(res, function (index) {
+						$('#productSlider').append(
+							'<div class="hero-slider owl-carousel">' +
+							'<div class="hs-item set-bg" data-setbg="img/decorate/mac.jpg">' +
+							'<div class="container">' +
+							'<div class="row">' +
+							'<div class="col-xl-6 col-lg-7 text-white">' +
+							'<span>New Arrivals</span>' +
+							'<h2>' + res[index].productName + '</h2>' +
+							'<p>Padke is gay.</p>' +
+							'<a href="#" class="site-btn sb-line">DISCOVER</a>' +
+							'</div>' +
+							'</div>' +
+							'<div class="offer-card text-white">' +
+							'<span>from</span>' +
+							'<h2>$29</h2>' +
+							'<p>SHOP NOW</p>' +
+							'</div>' +
+							'</div>' +
+							'</div>' +
+							'</div>');
+					});
+				});
+
+			}
+		})
+	});
+</script>
+
+<body>
+
+	<!-- Header section -->
+	<header class="header-section">
+		<div class="header-top">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-2 text-center text-lg-left">
+						<!-- logo -->
+						<a href="./index.html" class="site-logo">
+							<h3>PCMART</h3>
+						</a>
+					</div>
+					<div class="col-xl-6 col-lg-5">
+						<form class="header-search-form">
+							<input type="text" placeholder="Search on PcworlD....">
+							<button><i class="flaticon-search"></i></button>
+						</form>
+					</div>
+					<div class="col-xl-4 col-lg-5">
+						<div class="user-panel">
+							<div class="up-item">
+
+								<div class="m-r-10">
+									<a href="userprofile.html">
+										<div class="userprofile" id="userprofiledisplay">
+
+											<!-- userprofile displayed here -->
+
+										</div>
+									</a>
+								</div>
+							</div>
+							<div class="up-item">
+								<div class="shopping-card">
+									<i class="flaticon-bag"></i>
+									<span>0</span>
+								</div>
+								<a href="/loadCart">Shopping Cart</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<nav class="main-navbar">
+			<div class="container">
+				<!-- menu -->
+				<ul class="main-menu">
+					<li><a href="./index.html">Home</a></li>
+					<li><a href="./category.html">Laptop</a></li>
+					<li><a href="./category.html">Desktop</a></li>
+					<li><a href="./category.html">Accessories
+							<span class="new">New</span>
+						</a></li>
+					<li><a href="./category.html">Hardware</a></li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+	<!-- Header section end -->
+
+	<!-- Hero section -->
+	<section class="hero-section">
+
+		<div class="container">
+			<div id="productSlider"></div>
+			<div class="slide-num-holder" id="snh-1"></div>
+		</div>
+	</section>
+	<!-- Hero section end -->
+
+	<!-- letest product section -->
+	<section class="top-letest-product-section">
+		<div class="container">
+			<div class="section-title">
+				<h2>LATEST PRODUCTS</h2>
+			</div>
+			<div class="product-slider owl-carousel">
+				<div class="product-item">
+					<div class="pi-pic">
+						<img src="../img/product/hp_pavilon.jpg" alt="">
+						<div class="pi-links">
+							<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
+							<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
+						</div>
+					</div>
+					<div class="pi-text">
+						<h6>$35,00</h6>
+						<p>Flamboyant Pink Top </p>
+					</div>
+				</div>
+				<div class="product-item">
+					<div class="pi-pic">
+						<div class="tag-new">New</div>
+						<img src="./img/product/a.jpg" alt="">
+						<div class="pi-links">
+							<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
+							<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
+						</div>
+					</div>
+					<div class="pi-text">
+						<h6>$35,00</h6>
+						<p>Black and White Stripes Dress</p>
+					</div>
+				</div>
+			</div>
+	</section>
+	<!-- letest product section end -->
+
+	<section class="product-filter-section">
+		<div class="container">
+			<div class="section-title">
+				<h2>BROWSE TOP SELLING PRODUCTS</h2>
+			</div>
+			<ul class="product-filter-menu sticky-top">
+				<li><a href="#">Acer</a></li>
+				<li><a href="#">Apple</a></li>
+				<li><a href="#">Dell</a></li>
+				<li><a href="#">Lenovo</a></li>
+				<li><a href="#">misi</a></li>
+				<li><a href="#">asus</a></li>
+				<li><a href="#">hp</a></li>
+				<li><a href="#">SAMSUNG</a></li>
+
+			</ul>
+			<div class="row">
+				<div class="col-lg-3 col-sm-6">
+					<div class="product-item">
+						<div class="pi-pic">
+							<img src="./img/product/macpro2.jpg" alt="">
+							<div class="pi-links">
+								<a href="#" class="add-card"><i class="flaticon-bag"></i><span>ADD TO CART</span></a>
+								<a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a>
+							</div>
+						</div>
+						<div class="pi-text">
+							<div class="tag-sale">ON SALE</div>
+							<h6>$35,00</h6>
+							<p>Flamboyant Pink Top </p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="text-center pt-5">
+				<button class="site-btn sb-line sb-dark">LOAD MORE</button>
+			</div>
+		</div>
+	</section>
+	<!-- Product filter section end -->
+
+	<!--====== Javascripts & Jquery ======-->
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.slicknav.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/jquery.nicescroll.min.js"></script>
+	<script src="js/jquery.zoom.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<script src="js/main.js"></script>
+</body>
+
+</html>
